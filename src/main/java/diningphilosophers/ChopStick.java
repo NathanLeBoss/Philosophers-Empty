@@ -16,8 +16,9 @@ public class ChopStick {
     synchronized boolean take() throws InterruptedException{
         // si la baguette n'est pas libre
         if(!iAmFree){
-            // alors pas réussi à la prendre
-            return false;
+            // alors pas réussi à la prendre, on attend
+            wait();
+            if(!iAmFree) return false;
         }
         // sinon baguette prise donc plus libre
         iAmFree = false;
